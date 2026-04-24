@@ -1,24 +1,44 @@
-{
-    "name": "ShopEasy E-Commerce",
-        "short_name": "ShopEasy",
-            "start_url": "./index.html",
-                "display": "standalone",
-                    "background_color": "#ffffff",
-                        "theme_color": "#0d6efd",
-                            "description": "E-commerce PWA for MAD Lab Experiment 8 and 10",
-                                "orientation": "portrait",
-                                    "icons": [
-                                        {
-                                            "src": "https://via.placeholder.com/192",
-                                            "sizes": "192x192",
-                                            "type": "image/png",
-                                            "purpose": "any maskable"
-                                        },
-                                        {
-                                            "src": "https://via.placeholder.com/512",
-                                            "sizes": "512x512",
-                                            "type": "image/png",
-                                            "purpose": "any maskable"
-                                        }
-                                    ]
-}
+$(document).ready(function () {
+  // ===== Add to Cart Logic =====
+  $(".add-to-cart").click(function () {
+    var productName = $(this).closest("[data-role='content']").find("h3").text();
+    var itemHtml = "<li>" + productName + "</li>";
+
+    $("#cart-items").append(itemHtml);
+
+    // Refresh the jQuery Mobile listview to apply styles
+    if ($("#cart-items").hasClass("ui-listview")) {
+      $("#cart-items").listview("refresh");
+    }
+
+    alert("Item added to cart!");
+  });
+
+  // ===== Checkout Button =====
+  $(".checkout-btn").click(function () {
+    var itemCount = $("#cart-items li").length;
+    if (itemCount === 0) {
+      alert("Your cart is empty!");
+    } else {
+      alert("Order placed for " + itemCount + " item(s). Thank you!");
+      $("#cart-items").empty();
+      if ($("#cart-items").hasClass("ui-listview")) {
+        $("#cart-items").listview("refresh");
+      }
+    }
+  });
+
+  // ===== Service Worker Registration for PWA Support =====
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker
+        .register("./sw.js")
+        .then(function (reg) {
+          console.log("SW Registered with scope:", reg.scope);
+        })
+        .catch(function (err) {
+          console.log("SW Registration Failed:", err);
+        });
+    });
+  }
+});
