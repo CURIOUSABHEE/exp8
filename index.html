@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0d6efd">
+    <meta name="description" content="ShopEasy E-Commerce PWA for MAD Lab">
+    <title>ShopEasy PWA</title>
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="ShopEasy">
+
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        .product-img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div data-role="page" id="home">
+        <div data-role="header">
+            <h1>ShopEasy</h1>
+        </div>
+        <div data-role="content">
+            <ul data-role="listview" data-inset="true">
+                <li><a href="#product1">Smartphone - $699</a></li>
+            </ul>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <h4>&copy;2026 ShopEasy | Exp 8 & 10</h4>
+        </div>
+    </div>
+
+    <div data-role="page" id="product1">
+        <div data-role="header">
+            <a href="#home" class="ui-btn ui-icon-back ui-btn-icon-left">Back</a>
+            <h1>Smartphone</h1>
+        </div>
+        <div data-role="content">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDo-56SYH0GOWLa5hNYLHLXbRSl4sysw8A3A&s"
+                alt="Smartphone" class="product-img">
+            <h3>Price: $699</h3>
+            <button class="add-to-cart ui-btn ui-btn-b">Add to Cart</button>
+            <a href="#cart" class="ui-btn ui-icon-shop ui-btn-icon-left">Go to Cart</a>
+        </div>
+    </div>
+
+    <div data-role="page" id="cart">
+        <div data-role="header">
+            <a href="#home" class="ui-btn ui-icon-back ui-btn-icon-left">Back</a>
+            <h1>Shopping Cart</h1>
+        </div>
+        <div data-role="content">
+            <ul id="cart-items" data-role="listview" data-inset="true">
+            </ul>
+            <button class="ui-btn ui-btn-b">Checkout</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
