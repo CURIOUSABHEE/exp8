@@ -1,7 +1,8 @@
-const CACHE_NAME = 'shopeasy-v1';
+const CACHE_NAME = 'shopeasy-v2';
 const ASSETS = [
     './',
     './index.html',
+    './css/style.css',
     './js/script.js',
     './manifest.json',
     'https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css',
@@ -34,7 +35,7 @@ self.addEventListener('activate', function (event) {
     self.clients.claim();
 });
 
-// Fetch: Cache-first strategy with network fallback
+// Fetch: Cache-first with network fallback
 self.addEventListener('fetch', function (event) {
     event.respondWith(
         caches.match(event.request).then(function (cachedResponse) {
@@ -42,7 +43,6 @@ self.addEventListener('fetch', function (event) {
                 return cachedResponse;
             }
             return fetch(event.request).then(function (networkResponse) {
-                // Cache new successful GET requests for future offline use
                 if (event.request.method === 'GET' && networkResponse.status === 200) {
                     var responseClone = networkResponse.clone();
                     caches.open(CACHE_NAME).then(function (cache) {
@@ -52,7 +52,6 @@ self.addEventListener('fetch', function (event) {
                 return networkResponse;
             });
         }).catch(function () {
-            // Fallback for navigation requests when offline
             if (event.request.mode === 'navigate') {
                 return caches.match('./index.html');
             }

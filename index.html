@@ -3,108 +3,232 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0d6efd">
-    <meta name="description" content="ShopEasy E-Commerce PWA for MAD Lab Experiment 8 and 10">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6C5CE7">
+    <meta name="description" content="ShopEasy — Premium E-Commerce PWA for MAD Lab Experiment 8 and 10">
     <title>ShopEasy PWA</title>
 
     <!-- PWA Meta Tags -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="ShopEasy">
 
     <!-- Icons -->
-    <link rel="icon" href="https://via.placeholder.com/192" type="image/png">
-    <link rel="apple-touch-icon" href="https://via.placeholder.com/192">
+    <link rel="icon" href="https://via.placeholder.com/192/6C5CE7/ffffff?text=SE" type="image/png">
+    <link rel="apple-touch-icon" href="https://via.placeholder.com/192/6C5CE7/ffffff?text=SE">
 
-    <!-- jQuery Mobile CSS -->
+    <!-- jQuery Mobile CSS (loaded first, then overridden) -->
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+    <!-- Custom Theme -->
+    <link rel="stylesheet" href="css/style.css">
 
     <!-- Manifest -->
     <link rel="manifest" href="manifest.json">
-
-    <style>
-        .product-img {
-            width: 100%;
-            max-height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 10px;
-        }
-
-        .product-desc {
-            color: #555;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-    </style>
 </head>
 
 <body>
 
     <!-- ===== HOME PAGE ===== -->
-    <div data-role="page" id="home">
-        <div data-role="header" data-theme="b">
-            <h1>ShopEasy</h1>
+    <div data-role="page" id="home" data-theme="none">
+        <div class="custom-header">
+            <h1>🛍️ ShopEasy</h1>
+            <div class="subtitle">Discover amazing products</div>
         </div>
-        <div data-role="content">
-            <p style="text-align:center; color:#555;">Browse our products below</p>
-            <ul data-role="listview" data-inset="true">
-                <li><a href="#product1">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDo-56SYH0GOWLa5hNYLHLXbRSl4sysw8A3A&s" alt="Smartphone">
-                    <h3>Smartphone</h3>
-                    <p>Latest model with 128GB storage</p>
-                    <p class="ui-li-aside"><strong>$699</strong></p>
-                </a></li>
-            </ul>
+
+        <div class="custom-content page-content">
+            <h2 class="section-title">Featured Products</h2>
+            <p class="section-subtitle">Handpicked for you</p>
+
+            <!-- Product Card 1 -->
+            <a href="#product1" class="product-card" data-transition="slide">
+                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&h=360&fit=crop"
+                    alt="Smartphone" class="product-card-img">
+                <div class="product-card-body">
+                    <div class="product-card-footer" style="margin-bottom: 8px;">
+                        <span class="product-badge">New</span>
+                    </div>
+                    <h3>Premium Smartphone</h3>
+                    <p class="product-desc">128GB Storage · AMOLED Display · 5000mAh Battery</p>
+                    <div class="product-card-footer">
+                        <span class="product-price">$699 <small>$899</small></span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Product Card 2 -->
+            <a href="#product2" class="product-card" data-transition="slide">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=360&fit=crop"
+                    alt="Headphones" class="product-card-img">
+                <div class="product-card-body">
+                    <div class="product-card-footer" style="margin-bottom: 8px;">
+                        <span class="product-badge" style="background: linear-gradient(135deg, #fd79a8, #e84393);">Hot</span>
+                    </div>
+                    <h3>Wireless Headphones</h3>
+                    <p class="product-desc">Active Noise Cancelling · 30h Battery · Hi-Res Audio</p>
+                    <div class="product-card-footer">
+                        <span class="product-price">$249 <small>$349</small></span>
+                    </div>
+                </div>
+            </a>
         </div>
-        <div data-role="footer" data-position="fixed" data-theme="b">
-            <div data-role="navbar">
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="#home" class="active">
+                <span class="nav-icon">🏠</span>
+                Home
+            </a>
+            <a href="#cart">
+                <span class="nav-icon">🛒</span>
+                Cart
+                <span class="cart-badge" id="cart-count" style="display:none;">0</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- ===== PRODUCT 1 DETAIL PAGE ===== -->
+    <div data-role="page" id="product1" data-theme="none">
+        <div class="custom-header" style="padding-left: 70px !important;">
+            <a href="#home" class="back-btn" data-rel="back">← Back</a>
+            <h1>Smartphone</h1>
+        </div>
+
+        <div class="custom-content page-content">
+            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&h=400&fit=crop"
+                alt="Smartphone" class="detail-img">
+
+            <h2 class="detail-title">Premium Smartphone</h2>
+            <p class="detail-desc">Experience the next generation of mobile technology. Crystal-clear AMOLED display, lightning-fast processor, and an all-day battery that keeps up with your lifestyle.</p>
+
+            <div class="detail-price-row">
+                <span class="detail-price">$699</span>
+                <span class="detail-old-price">$899</span>
+                <span class="product-badge">22% OFF</span>
+            </div>
+
+            <div class="detail-features">
+                <h4>Key Features</h4>
                 <ul>
-                    <li><a href="#home" class="ui-btn-active">Home</a></li>
-                    <li><a href="#cart">Cart</a></li>
+                    <li>6.7" Super AMOLED Display</li>
+                    <li>128GB Internal Storage</li>
+                    <li>5000mAh Long-lasting Battery</li>
+                    <li>48MP Triple Camera System</li>
+                    <li>5G Connectivity</li>
                 </ul>
             </div>
+
+            <button class="btn-primary add-to-cart" data-name="Premium Smartphone" data-price="699">
+                Add to Cart — $699
+            </button>
+            <a href="#cart" class="btn-secondary" data-transition="slide">
+                View Cart
+            </a>
         </div>
     </div>
 
-    <!-- ===== PRODUCT DETAIL PAGE ===== -->
-    <div data-role="page" id="product1">
-        <div data-role="header" data-theme="b">
-            <a href="#home" data-icon="back" data-rel="back">Back</a>
-            <h1>Smartphone</h1>
+    <!-- ===== PRODUCT 2 DETAIL PAGE ===== -->
+    <div data-role="page" id="product2" data-theme="none">
+        <div class="custom-header" style="padding-left: 70px !important;">
+            <a href="#home" class="back-btn" data-rel="back">← Back</a>
+            <h1>Headphones</h1>
         </div>
-        <div data-role="content">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDo-56SYH0GOWLa5hNYLHLXbRSl4sysw8A3A&s"
-                alt="Smartphone" class="product-img">
-            <p class="product-desc">Premium smartphone with a stunning display, 128GB storage, and all-day battery life.</p>
-            <h3>Price: $699</h3>
-            <button class="add-to-cart ui-btn ui-btn-b ui-corner-all ui-shadow">Add to Cart</button>
-            <a href="#cart" class="ui-btn ui-btn-a ui-corner-all ui-shadow" data-icon="shop">Go to Cart</a>
+
+        <div class="custom-content page-content">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=400&fit=crop"
+                alt="Headphones" class="detail-img">
+
+            <h2 class="detail-title">Wireless Headphones</h2>
+            <p class="detail-desc">Immerse yourself in pure sound. Industry-leading noise cancellation, 30 hours of battery life, and premium comfort for all-day listening.</p>
+
+            <div class="detail-price-row">
+                <span class="detail-price">$249</span>
+                <span class="detail-old-price">$349</span>
+                <span class="product-badge" style="background: linear-gradient(135deg, #fd79a8, #e84393);">29% OFF</span>
+            </div>
+
+            <div class="detail-features">
+                <h4>Key Features</h4>
+                <ul>
+                    <li>Active Noise Cancellation</li>
+                    <li>30-Hour Battery Life</li>
+                    <li>Hi-Res Audio Certified</li>
+                    <li>Multipoint Connection</li>
+                    <li>Premium Memory Foam Cushions</li>
+                </ul>
+            </div>
+
+            <button class="btn-primary add-to-cart" data-name="Wireless Headphones" data-price="249">
+                Add to Cart — $249
+            </button>
+            <a href="#cart" class="btn-secondary" data-transition="slide">
+                View Cart
+            </a>
         </div>
     </div>
 
     <!-- ===== CART PAGE ===== -->
-    <div data-role="page" id="cart">
-        <div data-role="header" data-theme="b">
-            <a href="#home" data-icon="back" data-rel="back">Back</a>
-            <h1>Shopping Cart</h1>
+    <div data-role="page" id="cart" data-theme="none">
+        <div class="custom-header" style="padding-left: 70px !important;">
+            <a href="#home" class="back-btn" data-rel="back">← Back</a>
+            <h1>My Cart</h1>
         </div>
-        <div data-role="content">
-            <ul id="cart-items" data-role="listview" data-inset="true">
-            </ul>
-            <p id="empty-cart-msg" style="text-align:center; color:#999;">Your cart is empty.</p>
-            <button class="checkout-btn ui-btn ui-btn-b ui-corner-all ui-shadow">Checkout</button>
-        </div>
-        <div data-role="footer" data-position="fixed" data-theme="b">
-            <div data-role="navbar">
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#cart" class="ui-btn-active">Cart</a></li>
-                </ul>
+
+        <div class="custom-content page-content">
+            <!-- Cart Items Container -->
+            <div id="cart-items"></div>
+
+            <!-- Empty Cart State -->
+            <div id="empty-cart" class="cart-empty">
+                <div class="emoji">🛒</div>
+                <h3>Your cart is empty</h3>
+                <p>Browse our products and add items to get started!</p>
+                <br>
+                <a href="#home" class="btn-primary" data-transition="slide" style="display:inline-block; width:auto; padding: 12px 32px !important;">
+                    Start Shopping
+                </a>
+            </div>
+
+            <!-- Cart Summary (hidden when empty) -->
+            <div id="cart-summary" class="cart-summary" style="display:none;">
+                <div class="cart-summary-row">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal">$0</span>
+                </div>
+                <div class="cart-summary-row">
+                    <span>Shipping</span>
+                    <span style="color: var(--success);">Free</span>
+                </div>
+                <div class="cart-summary-row total">
+                    <span>Total</span>
+                    <span id="cart-total">$0</span>
+                </div>
+                <br>
+                <button class="btn-primary checkout-btn">
+                    Checkout
+                </button>
             </div>
         </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="#home">
+                <span class="nav-icon">🏠</span>
+                Home
+            </a>
+            <a href="#cart" class="active">
+                <span class="nav-icon">🛒</span>
+                Cart
+                <span class="cart-badge" id="cart-count-2" style="display:none;">0</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <span class="toast-icon">✓</span>
+        <span id="toast-msg">Item added to cart!</span>
     </div>
 
     <!-- Scripts -->
